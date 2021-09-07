@@ -13,8 +13,8 @@ from rl_agents.agents.common.exploration.abstract import exploration_factory
 # from utils import show_videos
 # from highway_env_local.scripts.utils import show_videos
 from rl_agents.agents.common.factory import agent_factory
-from rl_agents.trainer.evaluation import Evaluation
-from original_agent.highway_env_original import *
+from evaluation_local import Evaluation
+from highway_env_original import *
 
 
 def config(env_config, agent_config):
@@ -64,18 +64,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='multi head')
     args = parser.parse_args()
     args.load_path = None
-    # if args.server:
-    #     """server"""
-    #     sys.path.insert(0,'/data/home/yael123/multi_head/highway_env_local/scripts/')
-    #     rl_agents_dir = '/data/home/yael123/multi_head/rl-agents_local/'
-    #     sys.path.append(rl_agents_dir)
-    #     from highway_env_local.scripts.utils import show_videos
-    # else:
-    #     """local"""
-    #     sys.path.insert(0, 'C:/Users/yael/Documents/GitHub/multi_head/highway_env_local/scripts/')
-    #     rl_agents_dir = 'C:/Users/yael/Documents/GitHub/multi_head/rl-agents_local/'
-    #     sys.path.append(rl_agents_dir)
-    #     os.chdir(rl_agents_dir + "scripts")
+
     args.dispaly_env = True
     args.env_config = 'original_env_config.json'
     args.agent_config = 'ddqn_agent_original.json'
