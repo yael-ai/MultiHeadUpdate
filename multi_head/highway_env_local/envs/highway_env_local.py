@@ -36,7 +36,7 @@ class HighwayEnvLocal(AbstractEnv):
             "duration": 40,  # [s]
             "ego_spacing": 2,
             "vehicles_density": 1,
-            "collision_reward": -10,
+            "collision_reward": -3,
             ##############yaeli
             "right_lane_reward_1": 5,
             "high_speed_reward_1": 0,
@@ -50,7 +50,7 @@ class HighwayEnvLocal(AbstractEnv):
             "high_speed_reward_3": 0,
             "lane_change_reward_3": 5,
             "real_time_rendering": True,
-            "reward_speed_range": [20, 30],
+            "reward_speed_range": [6, 10],
             "offroad_terminal": False,
 
         })
@@ -86,7 +86,6 @@ class HighwayEnvLocal(AbstractEnv):
                     other_vehicles_type.create_random(self.road, spacing=1 / self.config["vehicles_density"])
                 )
 
-    #def _reward(self, action: Action) -> float:
 
     def _reward(self, action: Action) -> float:
         lane_change = action == 0 or action == 2

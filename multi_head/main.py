@@ -83,18 +83,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='multi head')
     args = parser.parse_args()
     args.load_path = None
-    # if args.server:
-    #     """server"""
-    #     sys.path.insert(0,'/data/home/yael123/multi_head/highway_env_local/scripts/')
-    #     rl_agents_dir = '/data/home/yael123/multi_head/rl-agents_local/'
-    #     sys.path.append(rl_agents_dir)
-    #     from highway_env_local.scripts.utils import show_videos
-    # else:
-    #     """local"""
-    #     sys.path.insert(0, 'C:/Users/yael/Documents/GitHub/multi_head/highway_env_local/scripts/')
-    #     rl_agents_dir = 'C:/Users/yael/Documents/GitHub/multi_head/rl-agents_local/'
-    #     sys.path.append(rl_agents_dir)
-    #     os.chdir(rl_agents_dir + "scripts")
 
     args.env_config = 'multi_head/configs/my_env_config.json'
     args.agent_config = 'multi_head/configs/ddqn_agent.json'
