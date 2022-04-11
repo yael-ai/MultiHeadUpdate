@@ -96,3 +96,11 @@ if __name__ == '__main__':
     args.output_dir = 'multi_head/out'
 
     main(args)
+
+    #AGENTS:
+    # run_20211120-093620_32729
+    # Right Lane = 8 Change Lane:3 high speed 1
+    #run_20211119-184157_21871
+    #Change Lane:8 Right Lane:5 High Speed:1
+    #run_20211118-193148_29042
+    #High Speed: 8 Lane Chang:5 Right Lane:1
