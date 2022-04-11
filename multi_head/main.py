@@ -41,6 +41,7 @@ def config(env_config, agent_config):
     env.configure(env_config)
     env.define_spaces()
     agent = agent_factory(env, agent_config)
+
     return env, agent
 
 
@@ -84,10 +85,13 @@ if __name__ == '__main__':
     args = parser.parse_args()
     args.load_path = None
 
-    args.env_config = 'multi_head/configs/my_env_config.json'
-    args.agent_config = 'multi_head/configs/ddqn_agent.json'
-    args.num_episodes = 3
-    # args.load_path = '/home/yotama/OneDrive/Local_Git/Multi_Head/multi_head/out/HighwayEnvLocal/DQNAgent/run_20210825-112722_81785'
+    args.env_config = 'configs/my_env_config_right_lane.json'
+    args.agent_config = 'configs/ddqn_agent.json'
+    #args.env_config = 'multi_head/configs/my_env_config.json'
+    #args.agent_config = 'multi_head/configs/ddqn_agent.json'
+    args.num_episodes = 1
+    #the train
+    #args.load_path = '/data/home/yael123/MultiHeadUpdate/multi_head/out/HighwayEnvLocal/DQNAgent/run_20210904-180808_22123/'
     args.eval = True
     args.output_dir = 'multi_head/out'
 

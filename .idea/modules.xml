@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MultiHeadUpdate.iml" filepath="$PROJECT_DIR$/.idea/MultiHeadUpdate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../highway-env/.idea/highway-env1.iml" filepath="$PROJECT_DIR$/../highway-env/.idea/highway-env1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../rl-agents/.idea/rl-agents1.iml" filepath="$PROJECT_DIR$/../rl-agents/.idea/rl-agents1.iml" />
     </modules>
   </component>
 </project>

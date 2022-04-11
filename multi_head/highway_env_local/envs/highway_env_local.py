@@ -36,19 +36,19 @@ class HighwayEnvLocal(AbstractEnv):
             "duration": 40,  # [s]
             "ego_spacing": 2,
             "vehicles_density": 1,
-            "collision_reward": -3,
+            "collision_reward": -5,
             ##############yaeli
             "right_lane_reward_1": 5,
             "high_speed_reward_1": 0,
             "lane_change_reward_1": 0,
 
             "right_lane_reward_2": 0,
-            "high_speed_reward_2": 5,
+            "high_speed_reward_2": 0,
             "lane_change_reward_2": 0,
 
             "right_lane_reward_3": 0,
             "high_speed_reward_3": 0,
-            "lane_change_reward_3": 5,
+            "lane_change_reward_3": 0,
             "real_time_rendering": True,
             "reward_speed_range": [6, 10],
             "offroad_terminal": False,
@@ -88,6 +88,9 @@ class HighwayEnvLocal(AbstractEnv):
 
 
     def _reward(self, action: Action) -> float:
+        max_value = max(self.config["lane_change_reward_1"] + self.config["high_speed_reward_1"] + self.config["right_lane_reward_1"],
+                     self.config["lane_change_reward_2"] + self.config["high_speed_reward_2"] + self.config["right_lane_reward_2"],
+                     self.config["lane_change_reward_3"] + self.config["high_speed_reward_3"] + self.config["right_lane_reward_3"] )
         lane_change = action == 0 or action == 2
         neighbours = self.road.network.all_side_lanes(self.vehicle.lane_index)
         lane = self.vehicle.target_lane_index[2] if isinstance(self.vehicle,
@@ -96,45 +99,52 @@ class HighwayEnvLocal(AbstractEnv):
         scaled_speed = utils.lmap(self.vehicle.speed, self.config["reward_speed_range"],
                                   [0, 1])
         """reward 1"""
-        reward = \
+        reward_1 = \
             + self.config["lane_change_reward_1"] * lane_change \
             + self.config["collision_reward"] * self.vehicle.crashed \
             + self.config["right_lane_reward_1"] * lane / max(len(neighbours) - 1, 1) \
             + self.config["high_speed_reward_1"] * np.clip(scaled_speed, 0, 1)
-        reward = utils.lmap(reward,
+
+
+        reward_1 = utils.lmap(reward_1,
                             [self.config["collision_reward"],
-                             self.config["lane_change_reward_1"] + self.config[
-                                 "high_speed_reward_1"] + self.config[
-                                 "right_lane_reward_1"]],
-                            [0, 1])
-        reward_1 = 0 if not self.vehicle.on_road else reward
+                             max_value],
+                            # self.config["lane_change_reward_1"] + self.config[
+                             #    "high_speed_reward_1"] + self.config[
+                              #   "right_lane_reward_1"]],
+                            [0,1])
+        reward_1 = 0 if not self.vehicle.on_road else reward_1
 
         """reward 2"""
-        reward = \
+        reward_2 = \
             + self.config["lane_change_reward_2"] * lane_change \
             + self.config["collision_reward"] * self.vehicle.crashed \
             + self.config["right_lane_reward_2"] * lane / max(len(neighbours) - 1, 1) \
             + self.config["high_speed_reward_2"] * np.clip(scaled_speed, 0, 1)
-        reward = utils.lmap(reward,
+
+
+        reward_2 = utils.lmap(reward_2,
                             [self.config["collision_reward"],
-                             self.config["lane_change_reward_2"] + self.config[
-                                 "high_speed_reward_2"] + self.config["right_lane_reward_2"]],
+                             max_value],
+                          #   self.config["lane_change_reward_2"] + self.config[
+                           #      "high_speed_reward_2"] + self.config["right_lane_reward_2"]],
                             [0, 1])
-        reward_2 = 0 if not self.vehicle.on_road else reward
+        reward_2 = 0 if not self.vehicle.on_road else reward_2
 
         """reward 3"""
-        reward = \
+        reward_3 = \
             + self.config["lane_change_reward_3"] * lane_change \
             + self.config["collision_reward"] * self.vehicle.crashed \
             + self.config["right_lane_reward_3"] * lane / max(len(neighbours) - 1, 1) \
             + self.config["high_speed_reward_3"] * np.clip(scaled_speed, 0, 1)
-        reward = utils.lmap(reward,
+        reward_3 = utils.lmap(reward_3,
                             [self.config["collision_reward"],
-                             self.config["lane_change_reward_3"] + self.config[
-                                 "high_speed_reward_3"] + self.config[
-                                 "right_lane_reward_3"]],
-                            [0, 1])
-        reward_3 = 0 if not self.vehicle.on_road else reward
+                             max_value],
+                             #self.config["lane_change_reward_3"] + self.config[
+                              #   "high_speed_reward_3"] + self.config[
+                               #  "right_lane_reward_3"]],
+                            [0,1])
+        reward_3 = 0 if not self.vehicle.on_road else reward_3
 
         return np.array([reward_1, reward_2, reward_3])
 

@@ -3,5 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Multi_Head" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../highway-env" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../rl-agents" vcs="Git" />
   </component>
 </project>

@@ -8,6 +8,8 @@ from highway_env.envs.common.finite_mdp import compute_ttc_grid
 from ..common.graphics import EnvViewer
 from highway_env.road.lane import AbstractLane
 from highway_env.utils import distance_to_circle
+
+
 from highway_env.vehicle.controller import MDPVehicle
 
 if TYPE_CHECKING:
