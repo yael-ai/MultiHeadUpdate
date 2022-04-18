@@ -2,9 +2,9 @@ import logging
 import torch
 from gym import spaces
 
-from DQNAgent_local_files.abstract_local import AbstractDQNAgentLocal
+from multi_head.DQNAgent_local_files.abstract_local import AbstractDQNAgentLocal
 from rl_agents.agents.common.memory import Transition
-from DQNAgent_local_files.models_local import model_factory, size_model_config, trainable_parameters
+from multi_head.DQNAgent_local_files.models_local import model_factory, size_model_config, trainable_parameters
 from rl_agents.agents.common.optimizers import loss_function_factory, optimizer_factory
 from rl_agents.agents.common.utils import choose_device
 
